@@ -72,6 +72,16 @@ def coletar_paises():
         paises.append(nome)
     return paises
 
+def inserir_pais(cursor, dados):
+    cursor.execute('''
+        INSERT INTO paises (
+            nome_comum, nome_oficial, capital, continente,
+            regiao, sub_regiao, populacao, area,
+            moeda_nome, moeda_simbolo, idioma,
+            fuso_horario, url_bandeira
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ''', dados)
+
     
 def main():
     conn, cursor = criar_banco()
