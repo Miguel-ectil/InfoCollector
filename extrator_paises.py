@@ -38,6 +38,31 @@ def buscar_dados_pais(nome_pais):
     except Exception as e:
         print(f"Erro ao processar dados de '{nome_pais}': {e}")
         return None
+
+# Conectar ao banco SQLite e criar tabela se não existir
+def criar_banco():
+    conn = sqlite3.connect('paises.db')
+    cursor = conn.cursor()
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS paises (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            nome_comum TEXT,
+            nome_oficial TEXT,
+            capital TEXT,
+            continente TEXT,
+            regiao TEXT,
+            sub_regiao TEXT,
+            populacao INTEGER,
+            area REAL,
+            moeda_nome TEXT,
+            moeda_simbolo TEXT,
+            idioma TEXT,
+            fuso_horario TEXT,
+            url_bandeira TEXT
+        )
+    ''')
+    conn.commit()
+    return conn, cursor    
     
 def main():
     # conn, cursor = criar_banco()
