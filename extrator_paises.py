@@ -6,23 +6,10 @@ def buscar_dados_pais(nome_pais):
     try:
         response = requests.get(url)
         response.raise_for_status()
-        dados = response.json()[0]  
-        print(f"Dados encontrados para '{nome_pais}': {dados}")
-        pais = {
-            "nome": dados.get("name", {}).get("common", ""),
-            "capital": dados.get("capital", [""])[0],
-            "regiao": dados.get("region", ""),
-            "subregiao": dados.get("subregion", ""),
-            "populacao": dados.get("population", 0),
-            "area": dados.get("area", 0),
-            "moeda": list(dados.get("currencies", {}).keys())[0] if dados.get("currencies") else "",
-            "idioma": list(dados.get("languages", {}).values())[0] if dados.get("languages") else ""
-        }
+        dados = response.json()[0]  # Pegamos apenas o primeiro resultado
     except Exception as e:
         print(f"Erro ao buscar dados para '{nome_pais}': {e}")
         return None
-
-
     
 def main():
     # conn, cursor = criar_banco()
