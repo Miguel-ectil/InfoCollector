@@ -63,9 +63,18 @@ def criar_banco():
     ''')
     conn.commit()
     return conn, cursor    
+
+# Coletar países do usuário
+def coletar_paises():
+    paises = []
+    for i in range(3):
+        nome = input(f"Digite o nome do {i+1}º país: ").strip()
+        paises.append(nome)
+    return paises
+
     
 def main():
-    # conn, cursor = criar_banco()
+    conn, cursor = criar_banco()
     # paises = coletar_paises()
 
     for pais in ["Brasil", "Argentina", "Chile", "Uruguai", "Paraguai"]:
