@@ -85,18 +85,18 @@ def inserir_pais(cursor, dados):
     
 def main():
     conn, cursor = criar_banco()
-    # paises = coletar_paises()
+    paises = coletar_paises()
 
-    for pais in ["Brasil", "Argentina", "Chile", "Uruguai", "Paraguai"]:
+    for pais in paises:
         dados = buscar_dados_pais(pais)
         if dados:
-            # inserir_pais(cursor, dados)
+            inserir_pais(cursor, dados)
             print(f"✅ Dados de '{pais}' inseridos com sucesso.")
         else:
             print(f"⚠️ Dados de '{pais}' não foram inseridos.")
 
-    # conn.commit()
-    # conn.close()
+    conn.commit()
+    conn.close()
     print("\n🏁 Processo concluído. Dados salvos em paises.db.")
 
 if __name__ == "__main__":
